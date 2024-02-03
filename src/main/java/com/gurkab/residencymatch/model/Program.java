@@ -1,13 +1,13 @@
 package com.gurkab.residencymatch.model;
 
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.Data;
 
 @Data
 public class Program {
+
     private String name;
     private int positions;
     private List<String> list;
@@ -33,9 +33,10 @@ public class Program {
 
     public void removeMatches() {
         while (matches.size() > positions) {
-            Applicant reject = matches.stream()
-                    .max((a1, a2) -> Integer.compare(list.indexOf(a1.getName()), list.indexOf(a2.getName())))
-                    .orElse(null);
+            Applicant reject = matches
+                .stream()
+                .max((a1, a2) -> Integer.compare(list.indexOf(a1.getName()), list.indexOf(a2.getName())))
+                .orElse(null);
             if (reject != null) {
                 reject.setMatched(false);
                 matches.remove(reject);
@@ -46,9 +47,7 @@ public class Program {
 
     public String description() {
         StringBuilder str = new StringBuilder(name + ": ");
-        String matchedApplicants = matches.stream()
-                .map(Applicant::getName)
-                .collect(Collectors.joining(", "));
+        String matchedApplicants = matches.stream().map(Applicant::getName).collect(Collectors.joining(", "));
         str.append(matchedApplicants);
         if (matches.size() < positions) {
             if (!matches.isEmpty()) {
@@ -57,9 +56,5 @@ public class Program {
             str.append("(").append(positions - matches.size()).append(" unfilled)");
         }
         return str.toString();
-    }
-
-    public String getName() {
-        return name;
     }
 }

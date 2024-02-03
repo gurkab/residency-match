@@ -1,11 +1,11 @@
 package com.gurkab.residencymatch.model;
 
-import lombok.Data;
-
 import java.util.List;
+import lombok.Data;
 
 @Data
 public class Applicant {
+
     private String name;
     private List<String> list;
     private boolean matched;
@@ -28,17 +28,5 @@ public class Applicant {
         }
         rankingPosition++;
         return list.get(rankingPosition);
-    }
-
-    public boolean isMatched() {
-        return matched;
-    }
-
-    public void setMatched(boolean matched) {
-        this.matched = matched;
-    }
-
-    public String getName() {
-        return name;
     }
 }

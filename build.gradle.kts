@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("com.diffplug.spotless") version "6.24.0"
 }
 
 group = "org.example"
@@ -18,4 +19,12 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+spotless {
+    java {
+        target("src/main/java/**/*.java")
+        prettier(mapOf("prettier" to "2.8.1", "prettier-plugin-java" to "2.0.0")).config(mapOf("parser" to "java", "tabWidth" to 4, "printWidth" to 140))
+        removeUnusedImports()
+    }
 }

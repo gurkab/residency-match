@@ -1,11 +1,11 @@
 package com.gurkab.residencymatch.model;
 
-import lombok.Data;
-
 import java.util.List;
+import lombok.Data;
 
 @Data
 public class ProgramAttributes {
+
     private int positions;
     private List<String> list;
 
